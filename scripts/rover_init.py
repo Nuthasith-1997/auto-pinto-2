@@ -204,7 +204,7 @@ if __name__ == '__main__':
 	rate = rospy.Rate(1)
 
 	rover = fcuModes()
-	rover.setSR(30)
+	#rover.setSR(30)
 
 	# Set to use external navigation instead of GPS or use GPS, enable only 1 of them
 	#rover.setExtNavMode()

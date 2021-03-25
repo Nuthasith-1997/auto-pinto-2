@@ -1,0 +1,18 @@
+<launch>
+
+    <!-- Set home and EKF position -->
+    <node name="static_tf_node" pkg="auto_pinto_2" type="static_tf_node.py"/>
+
+    <!-- Set home and EKF position -->
+    <node name="rover_init" pkg="auto_pinto_2" type="rover_init.py"/>
+
+    <!-- YDLidar -->
+    <include file="$(find ydlidar_ros)/launch/G1.launch" />
+
+    <!-- Laser filter node -->
+    <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+        <rosparam command="load" file="$(find auto_pinto_2)/config/filter_chain.yaml" />
+        <remap from="/scan_filtered" to="/scan" />
+    </node>
+
+</launch>

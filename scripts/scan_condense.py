@@ -15,8 +15,8 @@ class scanCondense:
 	def scan_cb(self, msg):
 		condensed_scan = LaserScan()
 		condensed_scan.header = msg.header
-		condensed_scan.angle_min = msg.angle_min
-		condensed_scan.angle_max = msg.angle_max
+		condensed_scan.angle_min = msg.angle_min # must be -72 or -fov/2
+		condensed_scan.angle_max = msg.angle_max # must be  72 or  fov/2
 		condensed_scan.angle_increment = (self.fov/self.scan_output_size) * self.DEG2RAD
 		condensed_scan.time_increment = msg.time_increment
 		condensed_scan.scan_time = msg.scan_time

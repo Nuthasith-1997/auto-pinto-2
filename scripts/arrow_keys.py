@@ -2,7 +2,7 @@
 
 import rospy
 import pygame
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TwistStamped
 
 keys = [False, False, False, False] #[up, left, down, right]
 
@@ -15,7 +15,8 @@ v, w = 0, 0
 if __name__ == '__main__':
 
 	rospy.init_node('arrow_keys')
-	pub = rospy.Publisher("/cmd_vel", Twist, queue_size = 1)
+	#pub = rospy.Publisher("/cmd_vel", Twist, queue_size = 1)
+	pub = rospy.Publisher("/mavros/setpoint_velocity/cmd_vel", TwistStamped, queue_size = 1)
 	rate = rospy.Rate(30)
 
 	speed = 0.5
@@ -67,9 +68,9 @@ if __name__ == '__main__':
 				else: w = -speed
 			else: w = 0
 
-		msg = Twist()
-		msg.linear.x = v
-		msg.angular.z = w*4
+		msg = TwistStamped()
+		msg.twist.linear.x = v
+		msg.twist.angular.z = w
 		pub.publish(msg)
 		rate.sleep()
 	pygame.quit()

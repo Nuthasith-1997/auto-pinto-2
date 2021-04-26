@@ -25,19 +25,20 @@ class fcuModes:
 		gp_origin_pub.publish(global_origin)
 
 	def setSR(self, sr):
+		"""
 		rospy.wait_for_service('/mavros/param/set')
 		try:
 			srParamSet = rospy.ServiceProxy('/mavros/param/set', mavros_msgs.srv.ParamSet)
 			valueSet = ParamValue()
 			valueSet.real = sr
-			srParamSet(param_id ="SR0_EXTRA1", value = valueSet)
+			#srParamSet(param_id ="SR0_EXTRA1", value = valueSet)
 			srParamSet(param_id ="SR0_POSITION", value = valueSet)
-			#srParamSet(param_id ="SR1_POSITION", value = valueSet)
-			#srParamSet(param_id ="SR2_POSITION", value = valueSet)
-			#srParamSet(param_id ="SR3_POSITION", value = valueSet)
+			srParamSet(param_id ="SR1_POSITION", value = valueSet)
+			srParamSet(param_id ="SR2_POSITION", value = valueSet)
+			srParamSet(param_id ="SR3_POSITION", value = valueSet)
 		except rospy.ServiceException as e:
 			print("Service set sr param call faild: {}".format(e))
-
+		"""
 		rospy.wait_for_service('/mavros/set_stream_rate')
 		try:
 			srService = rospy.ServiceProxy('/mavros/set_stream_rate', mavros_msgs.srv.StreamRate)
@@ -204,7 +205,7 @@ if __name__ == '__main__':
 	rate = rospy.Rate(1)
 
 	rover = fcuModes()
-	#rover.setSR(30)
+	rover.setSR(100)
 
 	# Set to use external navigation instead of GPS or use GPS, enable only 1 of them
 	#rover.setExtNavMode()
@@ -213,20 +214,20 @@ if __name__ == '__main__':
 	#rover.setDefaultNavMode
 
 	# Set global position origin & new home for guided mode
-	rover.setEKFOrigin()
-	rate.sleep()
-	print "Global position origin is set."
 	rover.setHome()
 	rate.sleep()
 	print "Home position is set."
+	rover.setEKFOrigin()
+	rate.sleep()
+	print "Global position origin is set."
 
 	rate.sleep()
 
-	while not rover.state.guided:
-		rover.setGuidedMode()
-		print "Attempt to change flight mode ..."
-		rate.sleep()
-	print "Guided mode is set successfully."
+	#while not rover.state.guided:
+	#	rover.setGuidedMode()
+	#	print "Attempt to change flight mode ..."
+	#	rate.sleep()
+	#print "Guided mode is set successfully."
 	current_mode = rover.state.mode
 
 	#while not rover.state.armed:
@@ -236,6 +237,7 @@ if __name__ == '__main__':
 	#print "The vehicle is arming ..."
 
 	while not rospy.is_shutdown():
+		rover.setSR(100)
 		if rover.state.mode != current_mode:
 			mode = rover.state.mode
 			print "The vehicle is now in {} mode.".format(mode)

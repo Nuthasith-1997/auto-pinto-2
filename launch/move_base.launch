@@ -1,0 +1,20 @@
+<launch>
+	<node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+		<!--param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /-->
+		<rosparam file="$(find auto_pinto_2)/config/navigation/costmap_common_params.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find auto_pinto_2)/config/navigation/costmap_common_params.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find auto_pinto_2)/config/navigation/local_costmap_params.yaml" command="load" />
+		<rosparam file="$(find auto_pinto_2)/config/navigation/global_costmap_params.yaml" command="load" />
+
+		<rosparam file="$(find auto_pinto_2)/config/navigation/move_base_params.yaml" command="load" />
+
+		<rosparam file="$(find auto_pinto_2)/config/navigation/dwa_local_planner_params.yaml" command="load" />
+		<rosparam file="$(find auto_pinto_2)/config/navigation/global_planner_params.yaml" command="load" />
+		<!--rosparam file="$(find auto_pinto_2)/config/navigation/navfn_global_planner_params.yaml" command="load" /-->
+
+
+		<!--remap from="cmd_vel"   to="/mavros/setpoint_velocity/cmd_vel_unstamped" /-->
+		<!--remap from="odom"      to="/mavros/local_position/odom" /-->
+		<!--remap from="odom"      to="/mavros/wheel_odometry/odom" /-->
+	</node>
+</launch>

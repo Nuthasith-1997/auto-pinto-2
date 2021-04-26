@@ -1,0 +1,62 @@
+DWAPlannerROS:
+
+# Robot Configuration Parameters
+  max_vel_x: 0.55
+  min_vel_x: 0.0
+
+  max_vel_y: 0.0
+  min_vel_y: 0.0
+
+# The velocity when robot is moving in a straight line
+  max_vel_trans:  0.55
+  min_vel_trans:  0.1
+
+  max_vel_theta: 0.45
+  min_vel_theta: 0.3
+
+  acc_lim_x: 3.0
+  acc_lim_y: 0.0
+  acc_lim_theta: 10.0
+  acc_lim_trans: 2.0
+
+  trans_stopped_vel: 0.02
+  theta_stopped_vel: 0.2
+
+# Goal Tolerance Parametes
+  xy_goal_tolerance: 0.5
+  yaw_goal_tolerance: 0.3
+  latch_xy_goal_tolerance: true
+
+# Simulation Parameters
+  sim_time: 4.0
+  sim_granularity: 0.075
+  angle_sim_granularity: 0.075
+  vx_samples: 15
+  vy_samples: 1
+  vth_samples: 40
+
+# Trajectory Scoring Parameters
+  path_distance_bias: 24.0
+  goal_distance_bias: 4.0
+  occdist_scale: 0.03
+  forward_point_distance: 0.125
+  stop_time_buffer: 0.2
+  scaling_speed: 0.30
+  max_scaling_factor: 1.0
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05
+  oscillation_reset_angle: 0.1
+
+# Debugging
+  publish_traj : true
+  publish_cost_grid: true
+  global_frame_id: odom
+
+# Other params
+  prune_plan: true
+  twirling_scale: 1.0
+  use_dwa: true
+  restore_defaults: false
+  vx_vth_cutoff_degree: 0.37
+  holonomic_robot: false

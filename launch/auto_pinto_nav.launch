@@ -1,0 +1,8 @@
+<launch>
+	<!-- amcl -->
+	<include file="$(find auto_pinto_2)/launch/amcl.launch" />
+
+	<!-- move base -->
+	<include file="$(find auto_pinto_2)/launch/move_base.launch" />
+
+</launch>

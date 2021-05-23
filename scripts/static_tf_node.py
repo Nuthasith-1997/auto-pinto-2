@@ -2,16 +2,16 @@
 
 import rospy
 
-import tf
-import tf2_ros
+from tf.transformations import quaternion_from_euler
+from tf2_ros import StaticTransformBroadcaster
 
-import geometry_msgs.msg
+from geometry_msgs.msg import TransformStamped
 
 class createTf:
 	def __init__(self, parent, child, x, y, z, r, p, yaw):
-		self.static_transformStamped = geometry_msgs.msg.TransformStamped()
+		self.static_transformStamped = TransformStamped()
 
-		quat = tf.transformations.quaternion_from_euler(r, p, yaw)
+		quat = quaternion_from_euler(r, p, yaw)
 		th_x = quat[0]
 		th_y = quat[1]
 		th_z = quat[2]
@@ -34,13 +34,13 @@ if __name__ == '__main__':
 	rospy.init_node('static_tf_node')
 	print "Node 'static_tf_node' has initialized."
 
-	broadcaster = tf2_ros.StaticTransformBroadcaster()
+	broadcaster = StaticTransformBroadcaster()
 
-	base_link = createTf("base_footprint", "base_link", 0, 0, 0.159, 0, 0, 0)
-	#base_scan = createTf("base_link", "base_scan", 0, 0, 0.437388, 0, 0, 0)
-	#wheel_left_link = createTf("base_link", "wheel_left_link", -0.09, 0.152, 0.1418, -1.5708, 0, 0)
-	#wheel_right_link = createTf("base_link", "wheel_right_link", -0.09, -0.152, 0.1418, -1.5708, 0, 0)
-	#imu_link = createTf("base_link", "imu_link", 0.185, 0.043732, 0.29765, 0, 0, 0)
+	base_link = createTf("base_footprint", "base_link", 0, 0, 0.05415, 0, 0, 0)
+	base_scan = createTf("base_link", "base_scan", 0, 0, 0.23085, 0, 0, 0)
+	wheel_left_link = createTf("base_link", "wheel_left_link", -0.09, 0.152, 0, -1.5708, 0, 0)
+	wheel_right_link = createTf("base_link", "wheel_right_link", -0.09, -0.152, 0, -1.5708, 0, 0)
+	imu_link = createTf("base_link", "imu_link", 0.183, 0.051882, 0.14285, 0, 0, 0)
 
 	broadcaster.sendTransform([base_link.static_transformStamped])
 

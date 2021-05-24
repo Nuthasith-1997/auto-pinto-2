@@ -1,4 +1,10 @@
 <launch>
+	<!-- Map server -->
+	<arg name="map_file" default="$(find auto_pinto_2)/map_files/floor66.yaml"/>
+	<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" output="screen">
+		<param name="frame_id" value="map"/>
+	</node>
+
 	<!-- amcl -->
 	<include file="$(find auto_pinto_2)/launch/amcl.launch" />
 

@@ -14,16 +14,16 @@ DWAPlannerROS:
   max_vel_theta: 0.45
   min_vel_theta: 0.3
 
-  acc_lim_x: 3.0
+  acc_lim_x: 2.5
   acc_lim_y: 0.0
-  acc_lim_theta: 10.0
+  acc_lim_theta: 3.5
   acc_lim_trans: 2.0
 
   trans_stopped_vel: 0.02
   theta_stopped_vel: 0.2
 
 # Goal Tolerance Parametes
-  xy_goal_tolerance: 0.5
+  xy_goal_tolerance: 0.3
   yaw_goal_tolerance: 0.3
   latch_xy_goal_tolerance: true
 
@@ -32,8 +32,8 @@ DWAPlannerROS:
   sim_granularity: 0.075
   angle_sim_granularity: 0.075
   vx_samples: 15
-  vy_samples: 1
-  vth_samples: 40
+  vy_samples: 0
+  vth_samples: 20
 
 # Trajectory Scoring Parameters
   path_distance_bias: 24.0

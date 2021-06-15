@@ -1,20 +1,56 @@
 scan_filter_chain:
-- name: box_filter
-  type: laser_filters/LaserScanBoxFilter
-  params:
-    box_frame: base_scan
-    max_x: 0.26
-    max_y: 0.20
-    max_z: 0.7
-    min_x: -0.26
-    min_y: -0.20
-    min_z: -0.7
-    invert: false
 
-- name: speckle_filter
-  type: laser_filters/LaserScanSpeckleFilter
+#########################################################
+###          _______       0 deg      _______
+###         |angle_1|       |        |angle_2|
+###          """""""        |         """""""
+###                        +|-     
+###                         |
+###                         |
+###                       _____
+###                      |LIDAR|
+###                       """""
+###
+###
+###
+###           _______                 _______
+###          |angle_3|               |angle_4|
+###           """""""                 """""""
+#########################################################
+
+
+- name: angle_1
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
   params:
-    filter_type: 1
-    max_range: 2.0
-    max_range_difference: 0.1
-    filter_window: 6
+    lower_angle: 0.588
+    upper_angle: 0.686
+
+- name: angle_2
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: 5.597
+    upper_angle: 5.695
+
+- name: angle_3
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: 2.455
+    upper_angle: 2.554
+
+- name: angle_4
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: 3.729
+    upper_angle: 3.828
+
+- name: angle_5
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: 1.129
+    upper_angle: 2.270
+
+- name: angle_6
+  type: laser_filters/LaserScanAngularBoundsFilterInPlace
+  params:
+    lower_angle: 4.012
+    upper_angle: 5.153

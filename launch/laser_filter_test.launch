@@ -1,7 +1,7 @@
 <launch>
   <!-- Scan filters -->
   <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
-    <remap from="/scan_raw" to="/scan" />
     <rosparam command="load" file="$(find auto_pinto_2)/config/filter_chain.yaml" />
+    <remap from="/scan" to="/scan_raw"/>
   </node>
 </launch>

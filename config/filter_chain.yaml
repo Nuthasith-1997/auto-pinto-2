@@ -22,26 +22,26 @@ scan_filter_chain:
 - name: angle_1
   type: laser_filters/LaserScanAngularBoundsFilterInPlace
   params:
-    lower_angle: 0.588
-    upper_angle: 0.686
+    lower_angle: 0.530
+    upper_angle: 0.695
 
 - name: angle_2
   type: laser_filters/LaserScanAngularBoundsFilterInPlace
   params:
-    lower_angle: 5.597
-    upper_angle: 5.695
+    lower_angle: -0.686 #3.729
+    upper_angle: -0.548 #3.828
 
 - name: angle_3
   type: laser_filters/LaserScanAngularBoundsFilterInPlace
   params:
     lower_angle: 2.455
-    upper_angle: 2.554
+    upper_angle: 2.610
 
 - name: angle_4
   type: laser_filters/LaserScanAngularBoundsFilterInPlace
   params:
-    lower_angle: 3.729
-    upper_angle: 3.828
+    lower_angle: -2.578
+    upper_angle: -2.455
 
 - name: angle_5
   type: laser_filters/LaserScanAngularBoundsFilterInPlace
@@ -52,5 +52,13 @@ scan_filter_chain:
 - name: angle_6
   type: laser_filters/LaserScanAngularBoundsFilterInPlace
   params:
-    lower_angle: 4.012
-    upper_angle: 5.153
+    lower_angle: -2.270 #-2.011 #4.012
+    upper_angle: -1.129 #-0.870 #5.153
+
+- name: speckle_filter
+  type: laser_filters/LaserScanSpeckleFilter
+  params:
+    filter_type: 1
+    max_range: 2.0
+    max_range_difference: 0.1
+    filter_window: 6
